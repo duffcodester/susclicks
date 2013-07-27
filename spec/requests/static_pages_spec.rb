@@ -25,4 +25,10 @@ describe "Static Pages" do
   			expect(page).to have_title("#{base_title} | Instructions")
   		end
  	end
+
+ 	it "should have the right links on the layout" do
+ 		visit root_path
+ 		click_link "Instructions"
+ 		expect(page).to have_title(full_title('Instructions'))
+ 	end
 end
