@@ -1,6 +1,9 @@
 Susclicks::Application.routes.draw do
-  get "static_pages/home"
-  get "static_pages/instructions"
+  get "users/new"
+
+  root 'static_pages#home'
+  match '/instructions', to: 'static_pages#instructions', via: 'get'
+  match 'signup', to: 'users#new', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
