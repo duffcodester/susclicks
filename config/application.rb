@@ -1,5 +1,9 @@
 require File.expand_path('../boot', __FILE__)
 
+# Use ruby built in CSV library
+require 'csv'
+require 'fastercsv'
+
 # Pick the frameworks you want:
 require "active_record/railtie"
 require "action_controller/railtie"

@@ -1,12 +1,16 @@
 Susclicks::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :keywords do
+    collection { post :import }
+  end
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/instructions', to: 'static_pages#instructions', via: 'get'
   match '/process', to: 'static_pages#process_files', via: 'get'
+  match '/keywords/show', to: 'keywords#show', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

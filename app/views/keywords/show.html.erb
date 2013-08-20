@@ -1,0 +1,18 @@
+<table border="1">
+	<tr>
+		<th>Ad Group</th>
+		<th>Keyword</th>
+		</tr>
+<% @keywords.each do |row| %>
+	<tr>
+		<td><%= row.ad_group %></td>
+		<td><%= row.keyword %></td>
+	</tr>
+	<% end %>
+</table>
+
+<h2>Import Keywords</h2>
+<%= form_tag import_keywords_path, multipart: true do %>
+<%= file_field_tag :file %>
+<%= submit_tag "Import" %>
+<% end %>

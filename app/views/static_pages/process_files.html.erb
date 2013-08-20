@@ -1,5 +1,9 @@
 <% provide(:title, 'Process Files') %>
 <body>
 <h3>Process Files</h3>
-<p>This is the page where files are processed.</p>
+<h2>Import Keywords</h2>
+<%= form_tag import_keywords_path, multipart: true do %>
+<%= file_field_tag :file %>
+<%= submit_tag "Import" %>
+<% end %>
 </body>
