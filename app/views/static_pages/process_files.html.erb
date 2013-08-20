@@ -1,8 +1,9 @@
 <% provide(:title, 'Process Files') %>
 <body>
-<h3>Process Files</h3>
 <h2>Import Keywords</h2>
 <%= form_tag import_keywords_path, multipart: true do %>
+<%= label_tag :campaign_name, "Campaign Name:" %>
+<%= text_field_tag :campaign_name %>
 <%= file_field_tag :file %>
 <%= submit_tag "Import" %>
 <% end %>
