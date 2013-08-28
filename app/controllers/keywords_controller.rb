@@ -21,7 +21,7 @@ class KeywordsController < ApplicationController
 	end
 
 	def import
-		Keyword.import(params[:file])
+		Keyword.import(params[:file], params[:campaign_name])
 		redirect_to '/keywords/', notice: "Keyword file imported"
 	end
 end
