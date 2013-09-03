@@ -23,6 +23,7 @@ class Keyword < ActiveRecord::Base
 		end
 		CSV.foreach(file.path, headers: true, header_converters: :symbol) do |row|
 			row[:ad_group] << " 3 ModBroad"
+			row[:keyword] = row[:keyword].split.map! { |x| "+#{x}" }.join ' '
 			row << ["keyword_type", "Broad"]
 			row << ["campaign_name", campaign_name]
 			Keyword.create! row.to_hash
