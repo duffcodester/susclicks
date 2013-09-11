@@ -31,7 +31,7 @@ describe "Authentication" do
       before { sign_in user }
 
       it { should_not have_title(user.name) }
-      it { should have_content('This is the page where files are processed.') }
+      it { should have_title('Process Files') }
       it { should have_link('Change Password', href: edit_user_path(user)) }
       it { should have_link('Logout',    href: signout_path) }
       it { should_not have_link('Login', href: signin_path) }
