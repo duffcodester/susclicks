@@ -12,19 +12,22 @@
 		<th>Keyword</th>
 		<th>Keyword Type</th>
 		<th>Campaign</th>
-		</tr>
-<% @keywords.each do |row| %>
-	<tr>
-		<td><%= row.ad_group %></td>
-		<td><%= row.keyword %></td>
-		<td><%= row.keyword_type %></td>
-		<td><%= row.campaign_name %></td>
 	</tr>
+
+	<% @keywords.each do |row| %>
+		<tr>
+			<td><%= row.ad_group %></td>
+			<td><%= row.keyword %></td>
+			<td><%= row.keyword_type %></td>
+			<td><%= row.campaign_name %></td>
+		</tr>
 	<% end %>
+
 </table>
 
 <h2>Import Keywords</h2>
+
 <%= form_tag import_keywords_path, multipart: true do %>
-<%= file_field_tag :file %>
-<%= submit_tag "Import" %>
+	<%= file_field_tag :file %>
+	<%= submit_tag "Import" %>
 <% end %>

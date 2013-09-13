@@ -13,10 +13,10 @@ class KeywordsController < ApplicationController
 	end
 
 	def index
-		@keywords = Keyword.all
+		@keywords =	Keyword.all # debug only, remove later
 		respond_to do |format|
 			format.html
-			format.csv { render text: @keywords.to_csv }
+			format.csv { render text: Keyword.to_csv }
 		end
 	end
 
