@@ -1,9 +1,24 @@
 class Keyword < ActiveRecord::Base
-	def self.to_csv
+	def self.to_keyword_csv
 		CSV.generate do |csv|
-			csv << ['ad_group', 'keyword_type', 'campaign_name']
+			csv << ['Ad Group', 'Keyword', 'keyword Type', 'Campaign Name']
+
 			all.each do |keyword|
-				csv << [keyword.ad_group, keyword.keyword_type, keyword.campaign_name]
+				csv << [keyword.ad_group, keyword.keyword, keyword.keyword_type, keyword.campaign_name]
+			end
+		end
+	end
+
+	def self.to_ad_group_csv
+		CSV.generate do |csv|
+			csv << ['Ad Group', 'Max CPC', 'Campaign']
+
+			all.inject(nil) do |previous_ad_group, keyword|
+				if keyword[:ad_group] != previous_ad_group
+					csv << [keyword.ad_group, '2', keyword.campaign_name]
+				end
+
+				keyword[:ad_group]
 			end
 		end
 	end
@@ -15,12 +30,14 @@ class Keyword < ActiveRecord::Base
 				row << ["campaign_name", campaign_name]
 				Keyword.create! row.to_hash
 			end
+
 			CSV.foreach(file.path, headers: true, header_converters: :symbol) do |row|
 				row[:ad_group] << " 2 Phrase"
 				row << ["keyword_type", "Phrase"]
 				row << ["campaign_name", campaign_name]
 				Keyword.create! row.to_hash
 			end
+
 			CSV.foreach(file.path, headers: true, header_converters: :symbol) do |row|
 				row[:ad_group] << " 3 ModBroad"
 				row[:keyword] = row[:keyword].split.map! { |x| "+#{x}" }.join ' '
@@ -28,6 +45,7 @@ class Keyword < ActiveRecord::Base
 				row << ["campaign_name", campaign_name]
 				Keyword.create! row.to_hash
 			end
+
 			CSV.foreach(file.path, headers: true, header_converters: :symbol) do |row|
 			  row[:ad_group] << " 4 Broad"
 			  row << ["keyword_type", "Broad"]

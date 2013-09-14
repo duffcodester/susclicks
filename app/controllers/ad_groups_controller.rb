@@ -7,8 +7,7 @@ class AdGroupsController < ApplicationController
   def index
     @ad_group = Ad_group.all # debug only, remove later
     respond_to do |format|
-      format.html
-      format.csv { render text: Ad_group.to_csv }
+      format.csv { render text: Keyword.to_csv }
     end
   end
 end
