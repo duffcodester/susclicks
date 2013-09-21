@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130908202641) do
+ActiveRecord::Schema.define(version: 20130914071038) do
+
+  create_table "ad_copies", force: true do |t|
+    t.string "ad_group"
+    t.string "description1"
+    t.string "description2"
+    t.string "display_url"
+    t.string "destination_url"
+    t.string "campaign"
+    t.string "headline1"
+    t.string "headline2"
+  end
 
   create_table "ad_groups", force: true do |t|
     t.string "ad_group"

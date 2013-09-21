@@ -1,0 +1,32 @@
+<!-- <p>
+  Download Keyword File:
+  <%= link_to "Download Keyword", keywords_path(format: "csv") %>
+  <br>
+  Download Ad Group File:
+  <%= link_to "Download Ad Group", ad_group_path(format: "csv") %>
+</p> -->
+
+<table border="1">
+  <tr>
+    <th>Ad Group</th>
+    <th>Headline</th>
+    <th>Description 1</th>
+    <th>Description 2</th>
+    <th>Display URL</th>
+    <th>Destination URL</th>
+    <th>Campaign</th>
+  </tr>
+
+  <% @adcopies.each do |row| %>
+    <tr>
+      <td><%= row.ad_group %></td>
+      <td><%= row.headline %></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><%= row.campaign %></td>
+    </tr>
+  <% end %>
+
+</table>

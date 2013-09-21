@@ -1,7 +1,8 @@
 <h2>Import Ad Copy & Headline Files</h2>
-<%= form_tag import_keywords_path, multipart: true do %>
-  <%= label_tag :campaign_name, "Campaign Name:" %>
-  <%= text_field_tag :campaign_name %>
-  <%= file_field_tag :file %>
+<%= form_tag import_ad_copies_path, multipart: true do %>
+  <%= label_tag :campaign, "Campaign Name:" %>
+  <%= text_field_tag :campaign %>
+  <%= file_field_tag :ad_headlines_file %>
+  <%= file_field_tag :ad_body_copy_file %>
   <%= submit_tag "Import" %>
 <% end %>

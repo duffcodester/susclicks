@@ -4,6 +4,11 @@ Susclicks::Application.routes.draw do
   resources :keywords do
     collection { post :import }
   end
+
+  resources :ad_copies do
+    collection { post :import }
+  end
+
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
