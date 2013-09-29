@@ -5,8 +5,9 @@ default_run_options[:pty] = true  # Must be set for the password prompt
 set :application, 'susclicks'
 set :scm, :git
 set :user, 'josh'
-set :use_sudo, false
+set :use_sudo, true
 set :repository, 'git@github.com:duffcodester/susclicks.git'
+set :branch, 'master'
 set :scm_passphrase, 'Coppermtn7'
 set :ssh_options, { :forward_agent => true }
 

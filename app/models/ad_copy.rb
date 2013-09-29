@@ -1,16 +1,23 @@
 class AdCopy < ActiveRecord::Base
   def self.import_ad_headlines(ad_headlines_file, campaign_name)
-    CSV.foreach(ad_headlines_file.path, headers: true, header_converters: :symbol) do |row|
-      row << ["campaign", campaign_name]
-      AdCopy.create! row.to_hash
+    for i in 0..1
+      CSV.foreach(ad_headlines_file.path, headers: true, header_converters: :symbol) do |row|
+        row << ["campaign", campaign_name]
+        AdCopy.create row.to_hash
+      end
     end
   end
 
   def self.import_ad_body_copy(ad_body_copy_file)
+    # numRows = CSV.readlines(ad_body_copy_file.path).size - 1
     CSV.foreach(ad_body_copy_file.path, headers: true, header_converters: :symbol) do |row|
       AdCopy.all.each do |ad|
-        ad.attributes = row.to_hash
-        ad.save!
+        if ad.description1?
+          AdCopy.create! row.to_hash
+        else
+          ad.attributes = row.to_hash
+          ad.save!
+        end
       end
     end
   end
