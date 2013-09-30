@@ -1,4 +1,9 @@
 class Keyword < ActiveRecord::Base
+	validates :ad_group, presence: true
+  validates :keyword, presence: true
+  validates :keyword_type, presence: true 
+  validates :campaign_name, presence: true
+
 	def self.to_keyword_csv
 		CSV.generate do |csv|
 			csv << ['Ad Group', 'Keyword', 'keyword Type', 'Campaign Name']

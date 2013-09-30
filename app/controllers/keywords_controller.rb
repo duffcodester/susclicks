@@ -1,4 +1,6 @@
 class KeywordsController < ApplicationController
+	before_action :signed_in_user, only: [:index, :show, :create, :import, :export_ad_group]
+
 	def create
 		@keyword = Keyword.new(keyword_params)
 		@keyword.save
@@ -27,7 +29,29 @@ class KeywordsController < ApplicationController
 	end
 
 	def import
-		Keyword.import(params[:file], params[:campaign_name])
-		redirect_to '/keywords/', notice: "Keyword file imported"
+		Keyword.all.each do |record|
+		  record.destroy
+		end
+		begin
+			Keyword.import(params[:file], params[:campaign_name])
+			flash[:success] = "Keyword file imported"
+			redirect_to '/keywords/'
+		rescue
+			flash[:error] = "Invalid Keyword Input File"
+      redirect_to '/process_keyword_file'
+    end
 	end
+
+	private
+
+    def user_params
+      params.require(:user).permit(:name, :email, :password,
+                                   :password_confirmation)
+    end
+
+    # Before filters
+
+    def signed_in_user
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
 end

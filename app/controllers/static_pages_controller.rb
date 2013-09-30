@@ -4,11 +4,4 @@ class StaticPagesController < ApplicationController
 
   def instructions
   end
-
-  def upload_form
-    respond_to do |format|
-      format.html
-      format.js
-    end
-  end
 end

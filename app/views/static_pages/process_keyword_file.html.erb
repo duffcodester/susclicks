@@ -1,7 +1,11 @@
-<h2>Import Keywords File</h2>
+<div class='process_width'>
+<h4>Import Keywords File</h4>
 <%= form_tag import_keywords_path, multipart: true do %>
   <%= label_tag :campaign_name, "Campaign Name:" %>
   <%= text_field_tag :campaign_name %>
+  <h2>Keyword Input File</h2>
   <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
+  <br>
+  <%= submit_tag "Import", class: 'btn btn-large btn-primary' %>
 <% end %>
+</div>

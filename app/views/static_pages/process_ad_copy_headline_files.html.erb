@@ -1,13 +1,13 @@
-<h2>Import Ad Copy & Headline Files</h2>
+<div class='process_width'>
+<h4>Import Ad Copy & Headline Files</h4>
 <%= form_tag import_ad_copies_path, multipart: true do %>
   <%= label_tag :campaign, "Campaign Name:" %>
-  <%= text_field_tag :campaign %>
-  <div class='center'>
+  <%= text_field_tag(:campaign) %>
     <h2>Ad Headlines Input File</h2>
     <%= file_field_tag :ad_headlines_file %>
     <h2>Ad Body Copy Input File</h2>
     <%= file_field_tag :ad_body_copy_file %>
     <br>
     <%= submit_tag "Import", class: "btn btn-large btn-primary" %>
-  </div>
 <% end %>
+</div>

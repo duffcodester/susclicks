@@ -1,9 +1,11 @@
-<p>
-  Download Ad Copy File:
-  <%= link_to "Download File", ad_copies_path(format: "csv") %>
-</p>
+<div class='center'>
+  <p>
+    <br>
+    <%= link_to "Download Ad Copy File", ad_copies_path(format: "csv"), class: 'btn btn-large btn-primary' %>
+  </p>
+</div>
 
-<table border="1">
+<!-- <table border="1">
   <tr>
     <th>Ad Group</th>
     <th>Headline</th>
@@ -12,6 +14,7 @@
     <th>Display URL</th>
     <th>Destination URL</th>
     <th>Campaign</th>
+    <th>Status</th>
   </tr>
 
   <% @ad_copies.each do |row| %>
@@ -23,7 +26,8 @@
       <td><%= row.display_url %></td>
       <td><%= row.destination_url %></td>
       <td><%= row.campaign %></td>
+      <td><%= row.status %></td>
     </tr>
   <% end %>
 
-</table>
+</table> -->

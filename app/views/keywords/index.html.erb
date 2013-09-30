@@ -1,12 +1,14 @@
-<p>
-	Download Keyword File:
-	<%= link_to "Download Keyword", keywords_path(format: "csv") %>
-	<br>
-	Download Ad Group File:
-	<%= link_to "Download Ad Group", ad_group_path(format: "csv") %>
-</p>
+<div class='center'>
+	<p>
+		<br>
+		<%= link_to "Download Keyword File", keywords_path(format: "csv"), class: 'btn btn-large btn-primary' %>
+		<br>
+		<br>
+		<%= link_to "Download Ad Group File", ad_group_path(format: "csv"), class: 'btn btn-large btn-primary' %>
+	</p>
+</div>
 
-<table border="1">
+<!-- <table border="1">
 	<tr>
 		<th>Ad Group</th>
 		<th>Keyword</th>
@@ -23,4 +25,4 @@
 		</tr>
 	<% end %>
 
-</table>
+</table> -->

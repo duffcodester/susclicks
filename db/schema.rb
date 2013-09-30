@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130929035901) do
+ActiveRecord::Schema.define(version: 20130930065712) do
 
   create_table "ad_copies", force: true do |t|
     t.string "ad_group"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20130929035901) do
     t.string "destination_url"
     t.string "campaign"
     t.string "headline"
+    t.string "status"
   end
 
   create_table "ad_groups", force: true do |t|
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 20130929035901) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
