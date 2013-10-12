@@ -1,17 +1,20 @@
 require 'capistrano/ext/multistage'
 
+server '192.241.220.72', :app, :web, :db, :primary => true
+
 default_run_options[:pty] = true  # Must be set for the password prompt
                                   # from git to work
 set :application, 'susclicks'
 set :scm, :git
 set :user, 'josh'
 set :use_sudo, false
-set :repository, 'git@github.com:duffcodester/susclicks.git'
+set :repository, 'git@github.com:duffcodester/#{application}.git'
 set :branch, 'master'
 set :scm_passphrase, 'Coppermtn7'
 set :ssh_options, { :forward_agent => true }
 set :rails_env, 'production'
-set :deploy_via, :copy
+set :deploy_to, '/home/#{user}/apps/#{application}'
+set :deploy_via, :remote_cache
 set :keep_releases, 5
 
 # set :scm_passphrase, 'lxzjwhhwxhrk'

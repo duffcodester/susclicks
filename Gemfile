@@ -8,9 +8,11 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'fastercsv'
 gem 'capistrano'
 gem 'capistrano-ext'
+gem 'pg'
+gem 'unicorn'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.7'
+  # gem 'sqlite3', '1.3.7'
   gem 'rspec-rails', '2.13.1'
   gem 'guard-rspec', '2.5.0'
   gem 'spork-rails', github: 'sporkrb/spork-rails'
@@ -38,6 +40,5 @@ group :doc do
 end
 
 group :production do
-  gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end

@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20130930065712) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "ad_copies", force: true do |t|
     t.string "ad_group"
     t.string "description1"
@@ -44,10 +47,10 @@ ActiveRecord::Schema.define(version: 20130930065712) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin"
+    t.boolean  "admin",           default: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
 end
