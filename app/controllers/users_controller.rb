@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [ :edit, :update ]
   before_action :correct_user, only: [ :edit, :update ]
-  before_action :admin_user, only: [:new, :create]
+  
+  # Uncomment after testing to only allow Jeff to add new users
+  # before_action :admin_user, only: [:new, :create]
 
   def show
   	@user = User.find(params[:id])
@@ -14,9 +16,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-    	sign_in @user
-      flash[:success] = "Welcome to Sustainable Clicks!"
-      redirect_to @user
+      flash[:success] = "User added"
+      redirect_to root_url
     else
       render 'new'
     end

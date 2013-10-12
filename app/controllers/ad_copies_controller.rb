@@ -18,21 +18,30 @@ class AdCopiesController < ApplicationController
   end
 
   def import
-    AdCopy.all.each do |record|
+    AdCopy.all.each do |record| # Clear out the database
       record.destroy
     end
+
     begin
-      AdCopy.import_ad_headlines(params[:ad_headlines_file], params[:campaign])
-      begin
+      AdCopy.validate_ad_headlines_file(params[:ad_headlines_file])
+      AdCopy.validate_ad_body_copy_file(params[:ad_body_copy_file])
+      if $valid_ad_headlines_file && $valid_ad_body_copy_file # if both files are good import them
+        AdCopy.import_ad_headlines(params[:ad_headlines_file], params[:campaign])
         AdCopy.import_ad_body_copy(params[:ad_body_copy_file])
         flash[:success] = "Ad Copy file imported"
         redirect_to '/ad_copies'
-      rescue
+      elsif $valid_ad_headlines_file && $valid_ad_body_copy_file == false # ad body copy is bad
         flash[:error] = "Invalid Ad Copy File"
+        redirect_to '/process_ad_copy_headline_files'
+      elsif $valid_ad_headlines_file == false && $valid_ad_body_copy_file # ad headlines is bad
+        flash[:error] = "Invalid Ad Headlines File"
+        redirect_to '/process_ad_copy_headline_files'
+      elsif $valid_ad_headlines_file == false && $valid_ad_body_copy_file == false # both files are bad
+        flash[:error] = "Invalid Ad Copy & Ad Headlines File"
         redirect_to '/process_ad_copy_headline_files'
       end
     rescue
-      flash[:error] = "Invalid Ad Headlines File"
+      flash[:error] = "Please check your files"
       redirect_to '/process_ad_copy_headline_files'
     end
   end

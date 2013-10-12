@@ -17,7 +17,6 @@ Susclicks::Application.routes.draw do
   match '/process', to: 'static_pages#process_files', via: 'get'
   match '/keywords/show', to: 'keywords#show', via: 'get'
   match '/ad_group', to: 'keywords#export_ad_group', via: 'get'
-  get 'static_pages/upload_form' => 'static_pages#upload_form', as: :upload_form
   match '/process_keyword_file', to: 'static_pages#process_keyword_file', via: 'get'
   match '/process_ad_copy_headline_files', to: 'static_pages#process_ad_copy_headline_files', via: 'get'
 

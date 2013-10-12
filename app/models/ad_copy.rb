@@ -4,6 +4,44 @@ class AdCopy < ActiveRecord::Base
   validates :campaign, presence: true
 
 
+  def self.validate_ad_headlines_file(file)
+    ad_headlines_file_contents = CSV.read(file.path)           #returns array of arrays for all of file contents
+    headlines_header_row = ad_headlines_file_contents.first #returns just the header row
+    puts 'Headlines Header Row = ' + headlines_header_row.to_s
+    test_ad_headlines_header = ['Ad Group']
+    number_of_headlines = headlines_header_row.size - 1
+    count = 1
+    while count <= number_of_headlines # check for headline1, headline2, ... headers
+      test_ad_headlines_header << 'Headline' + count.to_s
+      count += 1
+    end
+
+    puts 'Test Headlines Header Row = ' + test_ad_headlines_header.to_s 
+    if test_ad_headlines_header == headlines_header_row
+      $valid_ad_headlines_file = true
+    else
+      $valid_ad_headlines_file = false
+    end
+    puts 'Test Result is ' + $valid_ad_headlines_file.to_s
+  end
+
+  def self.validate_ad_body_copy_file(file)
+    ad_body_copy_file_contents = CSV.read(file.path)           #returns array of arrays for all of file contents
+    ad_body_copy_header_row = ad_body_copy_file_contents.first              #returns just the header row
+    puts 'Ad Body Copy Header Row = ' + ad_body_copy_header_row.to_s             
+
+    test_ad_body_copy_header = ['Description1', 'Description2', 'Display URL', 'Destination URL', 'Status'] #Defines the correct header row to test against
+    puts 'Test Ad Body Copy Header Row = ' + test_ad_body_copy_header.to_s 
+
+    if test_ad_body_copy_header == ad_body_copy_header_row
+      $valid_ad_body_copy_file = true
+    else
+      $valid_ad_body_copy_file = false
+    end
+    puts 'Test Result is ' + $valid_ad_body_copy_file.to_s
+
+  end
+
   def self.import_ad_headlines(ad_headlines_file, campaign_name)
     CSV.foreach(ad_headlines_file.path, headers: true, header_converters: :symbol) do |row|
       AdCopy.create([{ headline: row[:headline1] }, { headline: row[:headline2] }, { headline: row[:headline3] }, { headline: row[:headline4] }, { headline: row[:headline5] }, { headline: row[:headline6] }, { headline: row[:headline7] }, { headline: row[:headline8] }, { headline: row[:headline9] }, { headline: row[:headline10] } ]) do |r|

@@ -23,21 +23,28 @@ class KeywordsController < ApplicationController
 	end
 
 	def export_ad_group
-		respond_to do |format|
+		# flash[:success] = 'File Downloaded, Database has been cleared'
+    respond_to do |format|
 			format.csv { render text: Keyword.to_ad_group_csv }
 		end
+    Keyword.all.each do |record| #Clear the database after download
+      record.destroy
+    end
 	end
 
 	def import
-		Keyword.all.each do |record|
-		  record.destroy
-		end
-		begin
-			Keyword.import(params[:file], params[:campaign_name])
-			flash[:success] = "Keyword file imported"
-			redirect_to '/keywords/'
-		rescue
-			flash[:error] = "Invalid Keyword Input File"
+    begin
+      Keyword.validate_keyword_file(params[:file])
+      if $valid_keyword_file
+        Keyword.import(params[:file], params[:campaign_name])
+        flash[:success] = "Keyword File Imported"
+        redirect_to '/keywords/'
+      else
+        flash[:error] = "Invalid Keyword Input File"
+        redirect_to '/process_keyword_file'
+      end
+    rescue
+      flash[:error] = 'Please check your file'
       redirect_to '/process_keyword_file'
     end
 	end
