@@ -8,12 +8,12 @@ set :application, 'susclicks'
 set :scm, :git
 set :user, 'josh'
 set :use_sudo, true
-set :repository, 'git@github.com:duffcodester/#{application}.git'
+set :repository, 'git@github.com:duffcodester/susclicks.git'
 set :branch, 'master'
 set :scm_passphrase, 'Coppermtn7'
 set :ssh_options, { :forward_agent => true }
 set :rails_env, 'production'
-set :deploy_to, '/home/#{user}/apps/#{application}'
+set :deploy_to, '/home/josh/apps/susclicks'
 set :deploy_via, :remote_cache
 set :keep_releases, 5
 
@@ -34,6 +34,7 @@ namespace :deploy do
       run "/etc/init.d/unicorn_#{application} #{command}"
     end
   end
+
 
   task :setup_config, roles: :app do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"

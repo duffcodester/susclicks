@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: susclicks_development
+  pool: 5
+  username: 
+  password:
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: susclicks_test
+  pool: 5
+  username: 
+  password:
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: susclicks_production
+  pool: 5
+  username: 
+  password:
