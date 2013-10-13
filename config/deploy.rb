@@ -1,4 +1,5 @@
 require 'capistrano/ext/multistage'
+require 'rvm/capistrano'
 
 server '192.241.220.72', :app, :web, :db, :primary => true
 

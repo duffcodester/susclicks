@@ -8,6 +8,7 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'fastercsv'
 gem 'capistrano'
 gem 'capistrano-ext'
+gem 'rvm-capistrano'
 gem 'pg'
 gem 'unicorn'
 
