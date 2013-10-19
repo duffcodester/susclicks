@@ -1,5 +1,6 @@
 require 'capistrano/ext/multistage'
 require 'rvm/capistrano'
+require 'bundler/capistrano'
 
 server '192.241.220.72', :app, :web, :db, :primary => true
 
