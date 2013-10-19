@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [ :index, :edit, :update, :destroy ]
-  before_action :correct_user, only: [ :edit, :update ]
+  before_action :signed_in_user, only: [ :show, :index, :edit, :update, :destroy ]
+  before_action :correct_user, only: [ :show, :edit, :update ]
   
   # Uncomment after testing to only allow Jeff to add new users
   before_action :admin_user, only: [:index, :new, :create, :destroy]
