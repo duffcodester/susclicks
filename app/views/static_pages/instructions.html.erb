@@ -11,21 +11,25 @@
 	</ol>
 	<li>Optional: Click on the “Download example Keyword input file” button below to get an example    Keyword input file.<br>
 	<li>Go to the file upload page by clicking on either “Process Files” in the navigation bar, or by   clicking on the “Get Started” button on the home page.</li>
-	<li>Select “Keyword File” from the dropdown menu.</li>
+	<li>Select “Process Keyword File”</li>
 	<li>In the popup box that appears:</li>
 		<ol type="a">
-			<li>Go to AdWords Editor, select the “Campaigns” tab, and click on the name of the campaign you are working on in the left side of the interface. Then, copy the campaign name from the text box just below “Edit selected campaigns” in the AdWords Editor interface, and paste it into the Easy AdWords Editor File Builder popup box next to “Campaign Name”. Please note: This campaign name must exactly match the Google AdWords campaign name, or AdWords will create a new campaign with the new campaign name!</li>
-			<li>In the popup box, click on “Upload File”, and then browse to and select the Keyword input        file that you created.</li>
+			<li>Go to AdWords Editor, select the “Campaigns” tab, and click on the name of the campaign you are working on in the left side of the interface. Then, copy the campaign name from the text box just below “Edit selected campaigns” in the AdWords Editor interface, and paste it into the Easy AdWords Editor File Builder  box next to “Campaign Name”. Please note: This campaign name must exactly match the Google AdWords campaign name, or AdWords will create a new campaign with the new campaign name!</li>
+			<li>Click on “Choose File”, and then browse to and select the Keyword input file that you created.</li>
+			<li>Click “Import”</li>
+			<li>Note: This process may take a few moments.</li>
 		</ol>
-	<li>When the file conversion finishes, and that “Conversion Successful” page appears, click on the   “Download Files” button to download the two output CSV files that are ready to be uploaded into   AdWords Editor:</li>
+	<li>When the file conversion finishes, click on the respesctive buttons to download the two output CSV files that are ready to be uploaded into AdWords Editor:</li>
 		<ol type="a">
 			<li>The Ad Group Bid file</li>
 			<li>The Keyword file</li>
 		</ol>
 </ol>
-<div class="center">
-<%= link_to "Download Example Keyword Input File", '#', class: "btn btn-large btn-primary" %>
-</div>
+<% if signed_in? %>
+	<div class="center">
+	<%= link_to "Download Example Keyword Input File", '/example_files/keyword_input_file_example.csv', class: "btn btn-large btn-primary" %>
+	</div>
+<% end %>
 <h4 id="create_ad_copy">How To Create an Ad Copy File for AdWords Editor</h4>
 <ol>
 	<li>Using Excel or other spreadsheet software, create an Ad Headlines input file, saved in CSV   format, with two or more columns:</li>
@@ -33,6 +37,7 @@
 		<li>“Ad Group”: The name of the ad group that will use the headlines specified in the column(s)        to the right, without any match type suffix (such as “1 Exact”).</li>
 		<li>“Headline1”: The first headline to be used in the ad group in the first column.</li>
 		<li>(Optional) “Headline2”, “Headline3”, “Headline4”, etc.: The second, third, fourth, etc.        headlines to be used in the ad group in the first column.</li>
+		<li>Note: There is a maximum of 10 Headlines (i.e. Headline10).</li>
 	</ol>
 	<li>Using Excel or other spreadsheet software, create an Ad Body Copy input file, saved in CSV   format, where each row corresponds to a different set of ad body copy that will be used in the   ad groups listed in the Ad Headlines input file, and there are 4 columns:</li>
 	<ol type="a">
@@ -41,22 +46,26 @@
 		<li>“Display URL”: The Display URL to be used in the ad body copy.</li>
 		<li>“Destination URL”: The Destination URL for the landing page associated with this ad body copy.</li>
 	</ol>
-	<li>Optional: Click on the “Download example Ad input files” button file below to download example   Ad Headlines and Ad Body Copy input files.</li>
+	<li>Optional: Click on the “Download Example Ad Body Copy Input File” and “Download Example Ad Headlines Input File” buttons below to download example Ad Body Copy Input File and Ad Headlines Input File.</li>
 	<li>Go to the file upload page by clicking on either “Process Files” in the navigation bar, or by   clicking on the “Get Started” button on the home page.</li>
-	<li>Select “Ad Copy File” from the dropdown menu.</li>
+	<li>Select “Ad Copy Headline Files”</li>
 	<li>In the popup box that appears:</li>
 		<ol type="a">
 			<li>Go to AdWords Editor, select the “Campaigns” tab, and click on the name of the campaign you are working on in the left side of the interface. Then, copy the campaign name from the text box just below “Edit selected campaigns” in the AdWords Editor interface, and paste it into the Easy AdWords Editor File Builder popup box next to “Campaign Name”. Please note: This campaign name must exactly match the Google AdWords campaign name, or AdWords will create a new campaign with the new campaign name!</li>
-			<li>In the popup box, click on “Upload File”, and then browse to and select the Ad Headlines        input file that you created.</li>
-			<li>In the popup box, when the next “Upload File” button appears, click on “Upload File”, then browse to and select the Ad Body Copy input file that you created.</li>
+			<li>In the Ad Headlines box, click on “Choose File”, and then browse to and select the Ad Headlines Input file that you created.</li>
+			<li>In the Ad Body Copy box, click on “Choose File”, and then browse to and select the Ad Body Copy Input file that you created.</li>
 		</ol>
-	<li>When the file conversion finishes, and that “Conversion Successful” page appears, click on the   “Download File” button to download the one output CSV file that is ready to be uploaded into AdWords Editor:</li>
+	<li>When the file conversion finishes, click on the “Download Ad Copy File” button to download the one output CSV file that is ready to be uploaded into AdWords Editor:</li>
 	<ol type="a">
 		<li>The Ad Copy file</li>
 	</ol>
 </ol>
-<div class="center">
-<%= link_to "Download Example Ad Input Files", '#', class: "btn btn-large btn-primary" %>
-</div>
+<% if signed_in? %>
+	<div class="center">
+	<%= link_to "Download Example Ad Body Copy Input File", '/example_files/ad_body_copy_input_file_example.csv', class: "btn btn-large btn-primary" %>
+	<br><br>
+	<%= link_to "Download Example Ad Headlines Input File", '/example_files/ad_headlines_input_file_example.csv', class: "btn btn-large btn-primary" %>
+	</div>
+<% end %>
 </div>
 </body>
