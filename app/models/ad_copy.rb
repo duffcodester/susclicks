@@ -16,13 +16,11 @@ class AdCopy < ActiveRecord::Base
       count += 1
     end
 
-    puts 'Test Headlines Header Row = ' + test_ad_headlines_header.to_s 
     if test_ad_headlines_header == headlines_header_row
       $valid_ad_headlines_file = true
     else
       $valid_ad_headlines_file = false
     end
-    puts 'Test Result is ' + $valid_ad_headlines_file.to_s
   end
 
   def self.validate_ad_body_copy_file(file)
@@ -38,8 +36,6 @@ class AdCopy < ActiveRecord::Base
     else
       $valid_ad_body_copy_file = false
     end
-    puts 'Test Result is ' + $valid_ad_body_copy_file.to_s
-
   end
 
   def self.import_ad_headlines(ad_headlines_file, campaign_name)
